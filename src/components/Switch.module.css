@@ -1,0 +1,16 @@
+.Switch {
+    width: 100px;
+    height: 100px;
+}
+
+.Switch:hover {
+    cursor: pointer;
+}
+
+.Switch.on {
+    background-color: green;
+}
+
+.Switch.off {
+    background-color: red;
+}
