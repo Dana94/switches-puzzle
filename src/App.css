@@ -1,14 +1,26 @@
 .App {
   text-align: center;
+  background-color: aliceblue;
+  height: 100vh;
 }
 
 .Container {
   display: flex;
-  justify-content: space-around;
-  margin-top: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .Reset {
   padding: .5rem 1rem;
   border: none;
+  margin-top: 3rem;
+  color: white;
+  background-color: black;
+}
+
+.Reset:hover,
+.Reset:focus {
+  cursor: pointer;
+  background: linear-gradient(#757575, #403333);
+  outline: none;
 }

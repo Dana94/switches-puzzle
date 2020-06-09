@@ -6,6 +6,12 @@ import { flipSwitch } from '../store/actions/switches';
 
 const Switch = props => {
 
+
+    const onKeyHandler = (event) => {
+        if(event.key === 'Enter') {
+            props.onToggle(props.id);
+        }
+    }
     let switchValueClasses = [classes.SwitchValue];
     let leverClasses = [classes.Lever];
 
@@ -25,6 +31,7 @@ const Switch = props => {
                 className={leverClasses.join(' ')}
                 onClick={() => props.onToggle(props.id)}
                 tabIndex="0"
+                onKeyPress={onKeyHandler}
                 >
             </div>
         </div>

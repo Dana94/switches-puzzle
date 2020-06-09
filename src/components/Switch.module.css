@@ -3,6 +3,7 @@
     height: 100px;
     position: relative;
     background-color: black;
+    margin: 2rem 3rem;
 }
 
 .SwitchValue {
@@ -15,13 +16,12 @@
 }
 
 .SwitchValue.on {
-    background-color: green;
-    box-shadow: 0px 1px 7px 4px green;
+
+    animation: switchValueOn forwards .75s linear;
 }
 
 .SwitchValue.off {
-    background-color: red;
-    box-shadow: 0px 1px 7px 4px red;
+    animation: switchValueOff forwards .75s linear;
 }
 
 .Lever {
@@ -64,5 +64,27 @@
     }
     to {
         top: 0;
+    }
+}
+
+@keyframes switchValueOn {
+    from {
+        box-shadow: 0px 1px 7px 4px red;
+        background-color: red;
+    }
+    to {
+        box-shadow: 0px 1px 7px 4px green;
+        background-color: green;
+    }
+}
+
+@keyframes switchValueOff {
+    from {
+        box-shadow: 0px 1px 7px 4px green;
+        background-color: green;
+    }
+    to {
+        box-shadow: 0px 1px 7px 4px red;
+        background-color: red;
     }
 }
