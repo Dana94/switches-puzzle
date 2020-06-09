@@ -5,3 +5,9 @@ export const flipSwitch = (id) => {
         id: id
     }
 }
+
+export const reset = () => {
+    return {
+        type: 'RESET',
+    }
+}

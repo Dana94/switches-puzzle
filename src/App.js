@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import './App.css';
 
 import Switch from './components/Switch';
+import {reset} from './store/actions/switches';
 
-function App() {
+function App(props) {
 
   return (
     <div className="App">
@@ -14,8 +17,15 @@ function App() {
         <Switch id={3} />
         <Switch id={4} />
       </div>
+      <button onClick={() => props.onReset()} className="Reset">Reset</button>
     </div>
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    onReset: () => dispatch(reset())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
