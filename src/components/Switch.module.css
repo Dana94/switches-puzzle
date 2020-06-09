@@ -44,6 +44,10 @@
     cursor: pointer;
 }
 
+.Lever:focus {
+    outline: red auto .5px;
+}
+
 @keyframes slideDown {
     from {
         top: 0;

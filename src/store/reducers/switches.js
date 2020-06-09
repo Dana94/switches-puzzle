@@ -9,6 +9,16 @@ const initialState = {
     ]
 };
 
+const resetState = {
+    switches: [
+        { id: 0, isOn: true },
+        { id: 1, isOn: true },
+        { id: 2, isOn: false },
+        { id: 3, isOn: false },
+        { id: 4, isOn: true }
+    ]
+};
+
 const updateSwitches = (state, id, idList = []) => {
     let ids = [id, ...idList];
 
@@ -26,6 +36,11 @@ const updateSwitches = (state, id, idList = []) => {
 }
 
 const reducer = (state = initialState, action) => {
+    if(action.type === 'RESET') {
+        return {
+            switches: [...resetState.switches]
+        }
+    }
     switch (action.id) {
         case 0:
             return {

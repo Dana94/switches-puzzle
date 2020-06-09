@@ -7,3 +7,8 @@
   justify-content: space-around;
   margin-top: 2rem;
 }
+
+.Reset {
+  padding: .5rem 1rem;
+  border: none;
+}

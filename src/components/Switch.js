@@ -21,7 +21,11 @@ const Switch = props => {
         <div className={classes.Switch}>
             <div className={switchValueClasses.join(' ')}>
             </div>
-            <div className={leverClasses.join(' ')} onClick={() => props.onToggle(props.id)}>
+            <div
+                className={leverClasses.join(' ')}
+                onClick={() => props.onToggle(props.id)}
+                tabIndex="0"
+                >
             </div>
         </div>
 
