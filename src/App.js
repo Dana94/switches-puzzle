@@ -3,23 +3,39 @@ import { connect } from 'react-redux';
 
 import './App.css';
 
-import Switch from './components/Switch';
-import {reset} from './store/actions/switches';
+import Welcome from './components/Messages/Welcome';
+import Switch from './components/Switch/Switch';
+import { reset } from './store/actions/switches';
 
 function App(props) {
 
+  let content = <Welcome />
+  if (props.gameStarted) {
+    content = (
+      <div>
+        <div className="Container">
+          <Switch id={0} />
+          <Switch id={1} />
+          <Switch id={2} />
+          <Switch id={3} />
+          <Switch id={4} />
+        </div>
+        <button onClick={() => props.onReset()} className="Reset">Reset</button>
+      </div>
+    )
+  }
+
   return (
     <div className="App">
-      <div className="Container">
-        <Switch id={0} />
-        <Switch id={1} />
-        <Switch id={2} />
-        <Switch id={3} />
-        <Switch id={4} />
-      </div>
-      <button onClick={() => props.onReset()} className="Reset">Reset</button>
+      {content}
     </div>
   );
+}
+
+const mapStateToProps = state => {
+  return {
+    gameStarted: state.gameReducer.gameStarted
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -28,4 +44,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

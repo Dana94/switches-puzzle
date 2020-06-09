@@ -2,16 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import classes from './Switch.module.css';
-import { flipSwitch } from '../store/actions/switches';
+import { flipSwitch } from '../../store/actions/switches';
 
 const Switch = props => {
-
+    // keep from re-rendering if unnecessary
 
     const onKeyHandler = (event) => {
         if(event.key === 'Enter') {
             props.onToggle(props.id);
         }
     }
+
     let switchValueClasses = [classes.SwitchValue];
     let leverClasses = [classes.Lever];
 
@@ -41,7 +42,7 @@ const Switch = props => {
 
 const mapStateToProps = state => {
     return {
-        switches: state.switches
+        switches: state.switchesReducer.switches
     }
 }
 
