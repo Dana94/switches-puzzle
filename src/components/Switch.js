@@ -5,11 +5,6 @@ import classes from './Switch.module.css';
 import { flipSwitch } from '../store/actions/switches';
 
 const Switch = props => {
-    // const [isOn, setIsOn] = useState(false);
-
-    // const toggleHandler = () => {
-    //     setIsOn(!isOn);
-    // }
 
     let classList = [classes.Switch];
     const isOn = props.switches.find(s => s.id === props.id).isOn;
@@ -19,7 +14,7 @@ const Switch = props => {
         classList.push(classes.off);
     }
     return (
-        <div className={classList.join(' ')} onClick={() => props.onToggle(props.id)}>{props.id}</div>
+        <div className={classList.join(' ')} onClick={() => props.onToggle(props.id)}></div>
     );
 };
 

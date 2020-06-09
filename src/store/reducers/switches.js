@@ -9,59 +9,44 @@ const initialState = {
     ]
 };
 
+const updateSwitches = (state, id, idList = []) => {
+    let ids = [id, ...idList];
+
+    let newSwitches = state.switches.map(item => {
+
+        if (ids.includes(item.id)) {
+            return {
+                id: item.id,
+                isOn: !state.switches.find(x => x.id === item.id).isOn
+            }
+        }
+        return item;
+    });
+    return newSwitches;
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.id) {
         case 0:
-            // affects 1 too
-            let newSwitches = state.switches.filter(s => s.id !== action.id && s.id !== 1);
-            newSwitches.push(
-                {
-                    id: action.id,
-                    isOn: !state.switches.find(s => s.id === action.id).isOn
-                },
-                {
-                    id: 1,
-                    isOn: !state.switches.find(s => s.id === 1).isOn
-                }
-            );
             return {
-                switches: newSwitches
+                switches: updateSwitches(state, action.id, [1])
             }
-        // case 1:
-        //     // affects 0, 3 too
-        //     newSwitches = state.switches.filter(s => s.id !== action.id && s.id !== 0 && s.id !== 3);
-        //     newSwitches.push(
-        //         {
-        //             id: 0,
-        //             isOn: !state.switches.find(s => s.id === 0).isOn
-        //         },
-        //         {
-        //             id: action.id,
-        //             isOn: !state.switches.find(s => s.id === action.id).isOn
-        //         },
-        //         {
-        //             id: 3,
-        //             isOn: !state.switches.find(s => s.id === 3).isOn
-        //         }
-        //     );
-        //     return {
-        //         switches: newSwitches
-        //     }
-        // case 2:
-        //     return {
-
-        //     }
-        // case 3:
-        //     // affects 0, 1, 4 too
-        //     return {
-
-        //     }
-        // case 4:
-        //     // affects 1 too
-        //     return {
-
-        //     }
+        case 1:
+            return {
+                switches: updateSwitches(state, action.id, [0, 3])
+            }
+        case 2:
+            return {
+                switches: updateSwitches(state, action.id)
+            }
+        case 3:
+            return {
+                switches: updateSwitches(state, action.id, [0, 1, 4])
+            }
+        case 4:
+            return {
+                switches: updateSwitches(state, action.id, [1])
+            }
         default:
             return state
     }
