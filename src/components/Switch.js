@@ -6,15 +6,25 @@ import { flipSwitch } from '../store/actions/switches';
 
 const Switch = props => {
 
-    let classList = [classes.Switch];
+    let switchValueClasses = [classes.SwitchValue];
+    let leverClasses = [classes.Lever];
+
     const isOn = props.switches.find(s => s.id === props.id).isOn;
     if (isOn) {
-        classList.push(classes.on);
+        switchValueClasses.push(classes.on);
+        leverClasses.push(classes.on);
     } else {
-        classList.push(classes.off);
+        switchValueClasses.push(classes.off);
+        leverClasses.push(classes.off);
     }
     return (
-        <div className={classList.join(' ')} onClick={() => props.onToggle(props.id)}></div>
+        <div className={classes.Switch}>
+            <div className={switchValueClasses.join(' ')}>
+            </div>
+            <div className={leverClasses.join(' ')} onClick={() => props.onToggle(props.id)}>
+            </div>
+        </div>
+
     );
 };
 
