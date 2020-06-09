@@ -1,0 +1,64 @@
+.Switch {
+    width: 40px;
+    height: 100px;
+    position: relative;
+    background-color: black;
+}
+
+.SwitchValue {
+    height: 80px;
+    width: 20px;
+
+    position: absolute;
+    left: calc(50% - 10px);
+    top: .5rem;
+}
+
+.SwitchValue.on {
+    background-color: green;
+    box-shadow: 0px 1px 7px 4px green;
+}
+
+.SwitchValue.off {
+    background-color: red;
+    box-shadow: 0px 1px 7px 4px red;
+}
+
+.Lever {
+    background: linear-gradient(#757575, #403333);
+    height: 25%;
+    width: 100px;
+    position: absolute;
+    left: -29px;
+}
+
+.Lever.on {
+    animation: slideDown forwards .75s linear;
+}
+
+.Lever.off {
+    animation: slideUp forwards .75s linear;
+}
+
+.Lever:hover {
+    cursor: pointer;
+}
+
+@keyframes slideDown {
+    from {
+        top: 0;
+    }
+    to {
+        top: 80%;
+    }
+}
+
+
+@keyframes slideUp {
+    from {
+        top: 80%;
+    }
+    to {
+        top: 0;
+    }
+}
