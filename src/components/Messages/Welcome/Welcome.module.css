@@ -1,0 +1,11 @@
+button:hover {
+    cursor: pointer;
+}
+
+h1 {
+    margin: 0;
+}
+
+.Container {
+    /* margin-top: 1rem; */
+}
