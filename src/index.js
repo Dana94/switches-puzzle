@@ -7,7 +7,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import switchesReducer from './store/reducers/switches';
-import gameReducer from './store/reducers/switches';
+import gameReducer from './store/reducers/game';
 
 const rootReducer = combineReducers({
     switchesReducer: switchesReducer,

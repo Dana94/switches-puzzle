@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 import './App.css';
 
-import Welcome from './components/Messages/Welcome';
+import Welcome from './components/Messages/Welcome/Welcome';
 import Switch from './components/Switch/Switch';
 import { reset } from './store/actions/switches';
 
 function App(props) {
 
-  let content = <Welcome />
-  if (props.gameStarted) {
+  let content = <Welcome />;
+  if (props.gameHasStarted) {
     content = (
       <div>
         <div className="Container">
@@ -34,7 +34,7 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    gameStarted: state.gameReducer.gameStarted
+    gameHasStarted: state.gameReducer.gameStarted
   }
 }
 

@@ -1,11 +1,16 @@
 
 const initialState = {
-    gameStarted: true
+    gameStarted: false
 }
 
 const reducer = (state = initialState, action) => {
-    return {
-        gameStarted: !state.gameStarted
+    if (action.type === 'CHANGE_GAME_STATUS') {
+        return {
+            gameStarted: !state.gameStarted
+        }
+    }
+    else {
+        return state;
     }
 }
 
