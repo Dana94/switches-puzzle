@@ -1,33 +1,37 @@
 
 const initialState = {
     switches: [
-        { id: 0, isOn: true },
-        { id: 1, isOn: true },
-        { id: 2, isOn: false },
-        { id: 3, isOn: false },
-        { id: 4, isOn: true }
+        { id: 0, isOn: true, ids: [1] },
+        { id: 1, isOn: true, ids: [0, 3] },
+        { id: 2, isOn: false, ids: [] },
+        { id: 3, isOn: false, ids: [0, 1, 4] },
+        { id: 4, isOn: true, ids: [1] },
+        { id: 5, isOn: true, ids: [1,2,3] }
     ],
 };
 
 const resetState = {
     switches: [
-        { id: 0, isOn: true },
-        { id: 1, isOn: true },
-        { id: 2, isOn: false },
-        { id: 3, isOn: false },
-        { id: 4, isOn: true }
+        { id: 0, isOn: true, ids: [1] },
+        { id: 1, isOn: true, ids: [0, 3] },
+        { id: 2, isOn: false, ids: [] },
+        { id: 3, isOn: false, ids: [0, 1, 4] },
+        { id: 4, isOn: true, ids: [1] },
+        { id: 5, isOn: true, ids: [1,2,3] }
     ]
 };
 
-const updateSwitches = (state, id, idList = []) => {
-    let ids = [id, ...idList];
+const updateSwitches = (state, id) => {
+    let idsAffected = state.switches.find(i => i.id === id).ids;
+    let ids = [id, ...idsAffected];
 
     let newSwitches = state.switches.map(item => {
 
         if (ids.includes(item.id)) {
             return {
                 id: item.id,
-                isOn: !state.switches.find(x => x.id === item.id).isOn
+                isOn: !state.switches.find(x => x.id === item.id).isOn,
+                ids: state.switches.find(x => x.id === item.id).ids
             }
         }
         return item;
@@ -42,32 +46,17 @@ const reducer = (state = initialState, action) => {
             gameStarted: true
         }
     }
-    switch (action.id) {
-        case 0:
-            return {
-                switches: updateSwitches(state, action.id, [1])
-            }
-        case 1:
-            return {
-                switches: updateSwitches(state, action.id, [0, 3])
-            }
-        case 2:
-            return {
-                switches: updateSwitches(state, action.id)
-            }
-        case 3:
-            return {
-                switches: updateSwitches(state, action.id, [0, 1, 4])
-            }
-        case 4:
-            return {
-                switches: updateSwitches(state, action.id, [1])
-            }
-        default:
-            return {
-                switches: state.switches
-            }
+    console.log(action.id)
+    if(typeof action.id === 'number') {
+        return {
+            switches: updateSwitches(state, action.id)
+        }
     }
+    return {
+        switches: state.switches
+    }
+
 }
+
 
 export default reducer;

@@ -10,15 +10,21 @@ const Switches = props => {
     return (
         <div>
             <div className="Container">
-                <Switch id={0} />
-                <Switch id={1} />
-                <Switch id={2} />
-                <Switch id={3} />
-                <Switch id={4} />
+                {
+                    props.switches.map(sw => {
+                        return <Switch id={sw.id} key={sw.id} />;
+                    })
+                }
             </div>
             <button onClick={() => props.onReset()} className="Reset">Reset</button>
         </div>
     )
+}
+
+const mapStateToProps = state => {
+    return {
+        switches: state.switchesReducer.switches
+    }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -27,4 +33,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Switches);
+export default connect(mapStateToProps, mapDispatchToProps)(Switches);
