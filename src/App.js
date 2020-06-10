@@ -2,27 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './App.css';
-
+import { changeGameStatus } from './store/actions/game';
+import Switches from './components/Switches/Switches';
 import Welcome from './components/Messages/Welcome/Welcome';
-import Switch from './components/Switch/Switch';
-import { reset } from './store/actions/switches';
 
 function App(props) {
 
   let content = <Welcome />;
-  if (props.gameHasStarted) {
-    content = (
-      <div>
-        <div className="Container">
-          <Switch id={0} />
-          <Switch id={1} />
-          <Switch id={2} />
-          <Switch id={3} />
-          <Switch id={4} />
-        </div>
-        <button onClick={() => props.onReset()} className="Reset">Reset</button>
-      </div>
-    )
+  if (!props.gameSolved && props.gameHasStarted) {
+    content = <Switches />
   }
 
   return (
@@ -34,13 +22,14 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    gameHasStarted: state.gameReducer.gameStarted
+    gameHasStarted: state.gameReducer.gameStarted,
+    gameSolved: !state.switchesReducer.switches.find(item => item.isOn === false)
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onReset: () => dispatch(reset())
+    onChangeGame: () => dispatch(changeGameStatus())
   }
 }
 

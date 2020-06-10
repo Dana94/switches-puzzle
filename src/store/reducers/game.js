@@ -6,7 +6,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     if (action.type === 'CHANGE_GAME_STATUS') {
         return {
-            gameStarted: !state.gameStarted
+            gameStarted: action.status
         }
     }
     else {

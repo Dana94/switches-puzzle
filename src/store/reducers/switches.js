@@ -6,7 +6,7 @@ const initialState = {
         { id: 2, isOn: false },
         { id: 3, isOn: false },
         { id: 4, isOn: true }
-    ]
+    ],
 };
 
 const resetState = {
@@ -36,9 +36,10 @@ const updateSwitches = (state, id, idList = []) => {
 }
 
 const reducer = (state = initialState, action) => {
-    if(action.type === 'RESET') {
+    if (action.type === 'RESET') {
         return {
-            switches: [...resetState.switches]
+            switches: [...resetState.switches],
+            gameStarted: true
         }
     }
     switch (action.id) {
@@ -63,7 +64,9 @@ const reducer = (state = initialState, action) => {
                 switches: updateSwitches(state, action.id, [1])
             }
         default:
-            return state
+            return {
+                switches: state.switches
+            }
     }
 }
 

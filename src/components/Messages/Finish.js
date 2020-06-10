@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {connect} from 'react-redux';
+
 const Finish = props => {
     return (
         <div>
@@ -9,4 +11,10 @@ const Finish = props => {
     );
 };
 
-export default Finish;
+const mapDispatchToProps = dispatch => {
+    return {
+
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Finish);
