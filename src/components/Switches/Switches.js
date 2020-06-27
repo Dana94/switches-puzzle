@@ -6,18 +6,11 @@ import './Switches.css';
 import { reset } from '../../store/actions/switches';
 
 const Switches = props => {
-    let printSwitches = [];
-    if(props.level === 1) {
-        // printSwitches = props.switches.slice(5);
-    }
-
-    console.log(printSwitches, props.level);
-
     return (
         <div>
             <div className="Container">
                 {
-                    printSwitches.map(sw => {
+                    props.switches.map(sw => {
                         return <Switch id={sw.id} key={sw.id} />;
                     })
                 }
