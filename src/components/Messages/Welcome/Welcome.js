@@ -17,13 +17,14 @@ const Welcome = props => {
         <div>
             <div className={classes.Container}>
                 <h1>Switches Puzzle</h1>
-                <p>Choose a level:</p>
-                <button onClick={() => props.onSetLevel(1)}>Level 1</button>
-                <button onClick={() => props.onSetLevel(2)}>Level 2</button>
-                <button onClick={() => props.onSetLevel(3)}>Level 3</button>
-
                 <p>Turn all the switches on so their color is green.</p>
-                <button onClick={startGame}>Start</button>
+
+                <p>Choose a level:</p>
+                <button onClick={() => props.onSetLevel(1)} className={classes.Level1}>Level 1</button>
+                <button onClick={() => props.onSetLevel(2)} className={classes.Level2}>Level 2</button>
+                <button onClick={() => props.onSetLevel(3)} className={classes.Level3}>Level 3</button>
+
+                <button onClick={startGame} className={classes.Start}>Start</button>
             </div>
         </div>
     );
