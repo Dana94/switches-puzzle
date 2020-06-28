@@ -8,6 +8,7 @@ button {
     letter-spacing: 0.02857em;
     text-transform: uppercase;
     color: white;
+    margin: 6px 8px;
 }
 
 button:hover {

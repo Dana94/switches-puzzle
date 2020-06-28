@@ -9,6 +9,7 @@ const Switches = props => {
     return (
         <div>
             <div className="Container">
+                <p>Turn all the switches on so their color is green.</p>
                 {
                     props.switches.map(sw => {
                         return <Switch id={sw.id} key={sw.id} />;
