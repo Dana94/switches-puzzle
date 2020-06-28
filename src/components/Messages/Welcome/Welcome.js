@@ -5,6 +5,7 @@ import { changeGameStatus } from '../../../store/actions/game';
 import { reset, setLevel } from '../../../store/actions/switches';
 
 import classes from './Welcome.module.css';
+import Button from '../../Button/Button';
 
 const Welcome = props => {
 
@@ -20,11 +21,12 @@ const Welcome = props => {
                 <p>Turn all the switches on so their color is green.</p>
 
                 <p>Choose a level:</p>
-                <button onClick={() => props.onSetLevel(1)} className={classes.Level1}>Level 1</button>
-                <button onClick={() => props.onSetLevel(2)} className={classes.Level2}>Level 2</button>
-                <button onClick={() => props.onSetLevel(3)} className={classes.Level3}>Level 3</button>
 
-                <button onClick={startGame} className={classes.Start}>Start</button>
+                <Button click={() => props.onSetLevel(1)} class="Level1" text="Level 1" />
+                <Button click={() => props.onSetLevel(2)} class="Level2" text="Level 2" />
+                <Button click={() => props.onSetLevel(3)} class="Level3" text="Level 3" />
+
+                <Button click={startGame} class="Start" text="Start"/>
             </div>
         </div>
     );
