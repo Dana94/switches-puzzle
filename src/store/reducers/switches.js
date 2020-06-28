@@ -24,31 +24,18 @@ const updateSwitches = (state, id) => {
     return newSwitches;
 }
 
-const reset = (state) => {
-    const level = state.level;
-    return level === 1 ? [...level1] :
-        level === 2 ? [...level2] :
-            [...level3];
-}
-
-const setLevel = (state, level) => {
-    return level === 1 ? [...level1] :
-        level === 2 ? [...level2] :
+const reset = (state, level) => {
+    const aLevel = level || state.level;
+    return aLevel === 1 ? [...level1] :
+        aLevel === 2 ? [...level2] :
             [...level3];
 }
 
 const reducer = (state = initialState, action) => {
-    if (action.type === 'RESET') {
+    if (action.type === 'RESET' || action.type === 'SET_LEVEL') {
         return {
-            switches: reset(state),
+            switches: action.level ? reset(state, action.level) : reset(state),
             level: state.level,
-            gameStarted: true
-        }
-    }
-    if (action.type === 'SET_LEVEL') {
-        return {
-            switches: setLevel(state, action.level),
-            level: action.level,
             gameStarted: true
         }
     }
@@ -71,8 +58,6 @@ const reducer = (state = initialState, action) => {
         level: state.level,
         gameStarted: state.gameStarted
     }
-
 }
-
 
 export default reducer;
