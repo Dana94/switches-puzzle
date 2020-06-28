@@ -18,3 +18,9 @@ export const setLevel = (level) => {
         level: level
     }
 }
+
+export const endGame = () => {
+    return {
+        type: 'END_GAME'
+    }
+}

@@ -2,7 +2,8 @@ import { level1, level2, level3 } from '../levels';
 
 const initialState = {
     switches: [],
-    level: null
+    level: null,
+    gameStarted: false
 };
 
 const updateSwitches = (state, id) => {
@@ -23,38 +24,40 @@ const updateSwitches = (state, id) => {
     return newSwitches;
 }
 
+const reset = (state, level) => {
+    const aLevel = level || state.level;
+    return aLevel === 1 ? [...level1] :
+        aLevel === 2 ? [...level2] :
+            [...level3];
+}
+
 const reducer = (state = initialState, action) => {
-    if (action.type === 'RESET') {
-        const level = state.level;
+    if (action.type === 'RESET' || action.type === 'SET_LEVEL') {
         return {
-            switches: level === 1 ? [...level1] :
-                level === 2 ? [...level2] :
-                    [...level3],
-            level: level
-            // gameStarted: true
+            switches: action.level ? reset(state, action.level) : reset(state),
+            level: state.level,
+            gameStarted: true
         }
     }
-    if (action.type === 'SET_LEVEL') {
+    if (action.type === 'END_GAME') {
         return {
-            switches: action.level === 1 ? [...level1] :
-                action.level === 2 ? [...level2] :
-                    [...level3],
-            // gameStarted: true,
-            level: action.level
+            switches: [],
+            level: null,
+            gameStarted: false
         }
     }
-    if (typeof action.id === 'number') {
+    if (action.type === 'FLIP_SWITCH' && typeof action.id === 'number') {
         return {
             switches: updateSwitches(state, action.id),
-            level: state.level
+            level: state.level,
+            gameStarted: true
         }
     }
     return {
         switches: state.switches,
-        level: state.level
+        level: state.level,
+        gameStarted: state.gameStarted
     }
-
 }
-
 
 export default reducer;

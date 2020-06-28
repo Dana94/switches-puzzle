@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 
 import Switch from './Switch/Switch';
 import './Switches.css';
-import { reset } from '../../store/actions/switches';
+import { reset, endGame } from '../../store/actions/switches';
 
 const Switches = props => {
     return (
         <div>
+            <p>Turn all the switches on so their color is green.</p>
             <div className="Container">
-                <p>Turn all the switches on so their color is green.</p>
                 {
                     props.switches.map(sw => {
                         return <Switch id={sw.id} key={sw.id} />;
@@ -17,20 +17,22 @@ const Switches = props => {
                 }
             </div>
             <button onClick={() => props.onReset()} className="Reset">Reset</button>
+            <button onClick={() => props.onEndGame()} className="EndGame">End Game</button>
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        switches: state.switchesReducer.switches,
-        level: state.switchesReducer.level
+        switches: state.switches,
+        level: state.level
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onReset: () => dispatch(reset())
+        onReset: () => dispatch(reset()),
+        onEndGame: () => dispatch(endGame())
     }
 }
 

@@ -1,20 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import switchesReducer from './store/reducers/switches';
-import gameReducer from './store/reducers/game';
 
-const rootReducer = combineReducers({
-    switchesReducer: switchesReducer,
-    gameReducer: gameReducer
-});
-
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(switchesReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
   <Provider store={store}>
