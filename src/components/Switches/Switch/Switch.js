@@ -40,7 +40,7 @@ const Switch = props => {
 
 const mapStateToProps = state => {
     return {
-        switches: state.switchesReducer.switches
+        switches: state.switches
     }
 }
 

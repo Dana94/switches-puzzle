@@ -18,3 +18,7 @@
     background: linear-gradient(#757575, #403333);
     outline: none;
 }
+
+p {
+    margin-top: 0;
+}

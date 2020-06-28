@@ -15,7 +15,8 @@ button:hover {
     cursor: pointer;
 }
 
-.Level1 {
+.Level1,
+.EndGame {
     background-color:#71b844;
 }
 
@@ -24,7 +25,7 @@ button:hover {
 }
 
 .Level3 {
-    background-color:#71b844;
+    background-color:#71b844; /* change? */
 }
 
 .Start {
