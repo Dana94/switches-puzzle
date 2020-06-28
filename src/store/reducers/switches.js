@@ -1,24 +1,8 @@
+import { level1, level2, level3 } from '../levels';
 
 const initialState = {
-    switches: [
-        { id: 0, isOn: true, ids: [1] },
-        { id: 1, isOn: true, ids: [0, 3] },
-        { id: 2, isOn: false, ids: [] },
-        { id: 3, isOn: false, ids: [0, 1, 4] },
-        { id: 4, isOn: true, ids: [1] },
-        { id: 5, isOn: true, ids: [1,2,3] }
-    ],
-};
-
-const resetState = {
-    switches: [
-        { id: 0, isOn: true, ids: [1] },
-        { id: 1, isOn: true, ids: [0, 3] },
-        { id: 2, isOn: false, ids: [] },
-        { id: 3, isOn: false, ids: [0, 1, 4] },
-        { id: 4, isOn: true, ids: [1] },
-        { id: 5, isOn: true, ids: [1,2,3] }
-    ]
+    switches: [],
+    level: null
 };
 
 const updateSwitches = (state, id) => {
@@ -41,19 +25,33 @@ const updateSwitches = (state, id) => {
 
 const reducer = (state = initialState, action) => {
     if (action.type === 'RESET') {
+        const level = state.level;
         return {
-            switches: [...resetState.switches],
-            gameStarted: true
+            switches: level === 1 ? [...level1] :
+                level === 2 ? [...level2] :
+                    [...level3],
+            level: level
+            // gameStarted: true
         }
     }
-    console.log(action.id)
-    if(typeof action.id === 'number') {
+    if (action.type === 'SET_LEVEL') {
         return {
-            switches: updateSwitches(state, action.id)
+            switches: action.level === 1 ? [...level1] :
+                action.level === 2 ? [...level2] :
+                    [...level3],
+            // gameStarted: true,
+            level: action.level
+        }
+    }
+    if (typeof action.id === 'number') {
+        return {
+            switches: updateSwitches(state, action.id),
+            level: state.level
         }
     }
     return {
-        switches: state.switches
+        switches: state.switches,
+        level: state.level
     }
 
 }
