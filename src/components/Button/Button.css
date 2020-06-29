@@ -18,18 +18,14 @@ button:hover {
 .Level1,
 .EndGame {
     background-color:#71b844;
+    color: #000000;
 }
 
 .Level2 {
     background-color:#ff0000;
 }
 
-.Level3 {
-    background-color:#71b844; /* change? */
-}
-
-.Start {
-    margin-top: 3rem;
+.Level3,
+.Reset {
     background-color:#312828;
 }
-
