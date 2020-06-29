@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
     if (action.type === 'RESET' || action.type === 'SET_LEVEL') {
         return {
             switches: action.level ? reset(state, action.level) : reset(state),
-            level: state.level,
+            level: action.level || state.level,
             gameStarted: true
         }
     }

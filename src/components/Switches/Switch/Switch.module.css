@@ -86,3 +86,9 @@
         background-color: #ff0000;
     }
 }
+
+@media (max-width: 768px) {
+    .Switch {
+        transform: scale(.75);
+    }
+}

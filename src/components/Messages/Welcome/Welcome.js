@@ -8,11 +8,6 @@ import Button from '../../Button/Button';
 
 const Welcome = props => {
 
-    const startGame = () => {
-        props.onChangeGame(true);
-        props.resetGame();
-    }
-
     return (
         <div>
             <div className={classes.Container}>
