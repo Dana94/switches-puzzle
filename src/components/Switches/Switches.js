@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Switch from './Switch/Switch';
 import './Switches.css';
 import { reset, endGame } from '../../store/actions/switches';
+import Button from '../Button/Button';
 
 const Switches = props => {
     return (
@@ -16,8 +17,8 @@ const Switches = props => {
                     })
                 }
             </div>
-            <button onClick={() => props.onReset()} className="Reset">Reset</button>
-            <button onClick={() => props.onEndGame()} className="EndGame">End Game</button>
+            <Button click={() => props.onReset()} class="Reset" text="Reset" />
+            <Button click={() => props.onEndGame()} class="EndGame" text="End Game" />
         </div>
     )
 }
