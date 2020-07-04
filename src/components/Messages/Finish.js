@@ -2,6 +2,7 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 
+import { reset, endGame } from '../../store/actions/switches';
 import Button from '../Button/Button';
 
 const Finish = props => {
@@ -9,8 +10,8 @@ const Finish = props => {
         <div>
             <h1>You solved level {props.level} in {props.moves} moves!</h1>
             <p>What do you want to do next?</p>
-            <Button class="Black" text="Try Another Level" />
-            <Button class="Red" text="Play Again" />
+            <Button class="Black" click={() => props.onEndGame()} text="Try Another Level" />
+            <Button class="Red" click={() => props.onReset()} text="Play Again" />
         </div>
     );
 };
@@ -24,7 +25,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        onReset: () => dispatch(reset()),
+        onEndGame: () => dispatch(endGame())
     }
 }
 
