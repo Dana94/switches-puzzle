@@ -53,7 +53,7 @@ const reducer = (state = initialState, action) => {
         return {
             switches: updateSwitches(state, action.id),
             level: state.level,
-            gameStarted: true,
+            gameStarted: state.gameStarted,
             moves: state.moves + 1
         }
     }

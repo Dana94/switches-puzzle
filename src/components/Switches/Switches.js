@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Switch from './Switch/Switch';
 import './Switches.css';
-import { reset, endGame } from '../../store/actions/switches';
+import Switch from './Switch/Switch';
 import Button from '../Button/Button';
+import { reset, endGame } from '../../store/actions/switches';
 
 const Switches = props => {
     return (
@@ -17,8 +17,8 @@ const Switches = props => {
                     })
                 }
             </div>
-            <Button click={() => props.onReset()} class="Reset" text="Reset" />
-            <Button click={() => props.onEndGame()} class="EndGame" text="End Game" />
+            <Button click={() => props.onReset()} class="Black" text="Reset" />
+            <Button click={() => props.onEndGame()} class="Green" text="End Game" />
             <p>Moves: {props.moves}</p>
         </div>
     )
