@@ -19,6 +19,7 @@ const Switches = props => {
             </div>
             <Button click={() => props.onReset()} class="Reset" text="Reset" />
             <Button click={() => props.onEndGame()} class="EndGame" text="End Game" />
+            <p>Moves: {props.moves}</p>
         </div>
     )
 }
@@ -26,7 +27,8 @@ const Switches = props => {
 const mapStateToProps = state => {
     return {
         switches: state.switches,
-        level: state.level
+        level: state.level,
+        moves: state.moves
     }
 }
 
