@@ -3,7 +3,8 @@ import { level1, level2, level3 } from '../levels';
 const initialState = {
     switches: [],
     level: null,
-    gameStarted: false
+    gameStarted: false,
+    moves: 0
 };
 
 const updateSwitches = (state, id) => {
@@ -36,27 +37,31 @@ const reducer = (state = initialState, action) => {
         return {
             switches: action.level ? reset(state, action.level) : reset(state),
             level: action.level || state.level,
-            gameStarted: true
+            gameStarted: true,
+            moves: 0
         }
     }
     if (action.type === 'END_GAME') {
         return {
             switches: [],
             level: null,
-            gameStarted: false
+            gameStarted: false,
+            moves: state.moves
         }
     }
     if (action.type === 'FLIP_SWITCH' && typeof action.id === 'number') {
         return {
             switches: updateSwitches(state, action.id),
             level: state.level,
-            gameStarted: true
+            gameStarted: true,
+            moves: state.moves + 1
         }
     }
     return {
         switches: state.switches,
         level: state.level,
-        gameStarted: state.gameStarted
+        gameStarted: state.gameStarted,
+        moves: state.moves
     }
 }
 

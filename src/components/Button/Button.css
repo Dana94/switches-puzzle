@@ -29,3 +29,10 @@ button:hover {
 .Reset {
     background-color:#312828;
 }
+
+.Reset:hover,
+.Reset:focus {
+    cursor: pointer;
+    background: linear-gradient(#757575, #403333);
+    outline: none;
+}
