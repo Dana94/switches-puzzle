@@ -12,7 +12,6 @@ const Welcome = props => {
         <div>
             <div className={classes.Container}>
                 <h1>Switches Puzzle</h1>
-
                 <p>Choose a Level:</p>
                 <div>
                     <Button click={() => props.onSetLevel(1)} class="Green" text="Level 1" />

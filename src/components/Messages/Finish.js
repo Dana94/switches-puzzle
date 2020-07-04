@@ -1,9 +1,8 @@
 import React from 'react';
-
 import {connect} from 'react-redux';
 
-import { reset, endGame } from '../../store/actions/switches';
 import Button from '../Button/Button';
+import { reset, endGame } from '../../store/actions/switches';
 
 const Finish = props => {
     return (
