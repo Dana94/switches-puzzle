@@ -17,8 +17,8 @@ const Switches = props => {
                     })
                 }
             </div>
-            <Button click={() => props.onReset()} class="Reset" text="Reset" />
-            <Button click={() => props.onEndGame()} class="EndGame" text="End Game" />
+            <Button click={() => props.onReset()} class="Black" text="Reset" />
+            <Button click={() => props.onEndGame()} class="Green" text="End Game" />
             <p>Moves: {props.moves}</p>
         </div>
     )

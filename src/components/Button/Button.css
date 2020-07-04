@@ -15,23 +15,21 @@ button:hover {
     cursor: pointer;
 }
 
-.Level1,
-.EndGame {
+.Green {
     background-color:#71b844;
     color: #000000;
 }
 
-.Level2 {
+.Red {
     background-color:#ff0000;
 }
 
-.Level3,
-.Reset {
+.Black {
     background-color:#312828;
 }
 
-.Reset:hover,
-.Reset:focus {
+.Black:hover,
+.Black:focus {
     cursor: pointer;
     background: linear-gradient(#757575, #403333);
     outline: none;

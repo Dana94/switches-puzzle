@@ -8,7 +8,9 @@ const Finish = props => {
     return (
         <div>
             <h1>You solved level {props.level} in {props.moves} moves!</h1>
-            <Button class="PlayAgain" text="Play Again" />
+            <p>What do you want to do next?</p>
+            <Button class="Black" text="Try Another Level" />
+            <Button class="Red" text="Play Again" />
         </div>
     );
 };
