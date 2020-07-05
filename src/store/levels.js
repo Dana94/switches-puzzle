@@ -1,11 +1,11 @@
 export const level1 = [
     { id: 0, isOn: false, ids: [2] },
-    { id: 1, isOn: false, ids: [0, 3] },
-    { id: 2, isOn: false, ids: [] },
+    { id: 1, isOn: false, ids: [0, 2] },
+    { id: 2, isOn: false, ids: [0, 1] },
 ];
 
 export const level2 = [
-    { id: 0, isOn: false, ids: [2] },
+    { id: 0, isOn: false, ids: [2, 4] },
     { id: 1, isOn: false, ids: [0, 3] },
     { id: 2, isOn: false, ids: [] },
     { id: 3, isOn: false, ids: [0, 1, 4] },
