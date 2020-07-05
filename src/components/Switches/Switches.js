@@ -7,10 +7,16 @@ import Button from '../Button/Button';
 import { reset, endGame } from '../../store/actions/switches';
 
 const Switches = props => {
+
+    let containerClasses = ["Container"];
+
+    if(props.level === 3) {
+        containerClasses.push("Level3");
+    }
     return (
         <div>
             <p>Turn all the switches on so their color is green.</p>
-            <div className="Container">
+            <div className={containerClasses.join(" ")}>
                 {
                     props.switches.map(sw => {
                         return <Switch id={sw.id} key={sw.id} />;
