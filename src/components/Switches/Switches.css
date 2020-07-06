@@ -2,17 +2,13 @@
     display: grid;
     grid-template-columns: auto auto auto;
     grid-row-gap: 1rem;
-    width: 80%;
+    width: 90%;
     margin: 2rem auto;
 }
 
 @media (min-width: 768px) {
     .Container {
         width: 40%;
-    }
-    .Container.Level3 {
-        grid-template-columns: auto auto auto auto;
-        column-gap: 4rem;
     }
 }
 

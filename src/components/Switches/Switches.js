@@ -19,6 +19,7 @@ const Switches = props => {
             <div className={containerClasses.join(" ")}>
                 {
                     props.switches.map(sw => {
+                        // if(sw.id )
                         return <Switch id={sw.id} key={sw.id} />;
                     })
                 }
