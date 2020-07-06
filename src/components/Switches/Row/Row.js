@@ -1,14 +1,14 @@
 import React from 'react';
 
+import "./Row.css";
 import Switch from './Switch/Switch';
 
 const Row = props => {
-    // console.log(props.switch);
     return (
-        <div>
+        <div className="Row">
             {
                 props.row.map((sw, index) => {
-                    return <Switch x={props.x} y={index} key={index} />
+                    return <Switch x={props.x} y={index} key={index} id={sw.id} />
                 })
             }
         </div>

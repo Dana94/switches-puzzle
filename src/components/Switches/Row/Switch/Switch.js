@@ -18,7 +18,7 @@ const Switch = props => {
     let switchValueClasses = [classes.SwitchValue];
     let leverClasses = [classes.Lever];
 
-    const isOn = props.switches.find(s => s.id === props.id).isOn;
+    const isOn = props.switches[props.x][props.y].isOn;
     if (isOn) {
         switchValueClasses.push(classes.on);
         leverClasses.push(classes.on);
@@ -26,6 +26,7 @@ const Switch = props => {
         switchValueClasses.push(classes.off);
         leverClasses.push(classes.off);
     }
+
     return (
         <div className={classes.Switch}>
             <div className={switchValueClasses.join(' ')}>

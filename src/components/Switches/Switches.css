@@ -1,4 +1,4 @@
-.Container {
+/* .Container {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-row-gap: 1rem;
@@ -14,7 +14,7 @@
     .Container.Level3 {
         grid-template-columns: auto auto auto auto;
     }
-}
+} */
 
 p {
     margin-top: 0;
