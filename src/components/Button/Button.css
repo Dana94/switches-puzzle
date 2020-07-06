@@ -27,10 +27,3 @@ button:hover {
 .Black {
     background-color:#312828;
 }
-
-.Black:hover,
-.Black:focus {
-    cursor: pointer;
-    background: linear-gradient(#757575, #403333);
-    outline: none;
-}
