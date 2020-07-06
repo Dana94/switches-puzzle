@@ -27,9 +27,9 @@ const updateSwitches = (state, id) => {
 
 const reset = (state, level) => {
     const aLevel = level || state.level;
-    return aLevel === 1 ? [...level1] :
-        aLevel === 2 ? [...level2] :
-            [...level3];
+    return aLevel === 1 ? level1.map(row => [...row]) :
+        aLevel === 2 ? level2.map(row => [...row]) :
+            level3.map(row => [...row]);
 }
 
 const reducer = (state = initialState, action) => {
