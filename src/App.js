@@ -24,8 +24,8 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    gameHasStarted: state.gameStarted && state.switches.find(row => row.find(col => col.isOn === false)),
-    gameSolved: state.switches.length > 0 && !state.switches.find(row => row.find(col => col.isOn === false))
+    gameHasStarted: state.gameStarted && state.switches.find(row => row.find(sw => sw.isOn === false)),
+    gameSolved: state.switches.length > 0 && !state.switches.find(row => row.find(sw => sw.isOn === false))
   }
 }
 

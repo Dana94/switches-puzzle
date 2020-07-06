@@ -10,8 +10,14 @@
     .Container {
         width: 40%;
     }
+
+    .Container.Level3 {
+        grid-template-columns: auto auto auto auto;
+    }
 }
 
 p {
+    margin-top: 0;
+    padding-top: 1rem;
     margin-bottom: 1rem;
 }

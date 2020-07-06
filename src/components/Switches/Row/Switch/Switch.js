@@ -2,12 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import classes from './Switch.module.css';
-import { flipSwitch } from '../../../store/actions/switches';
+import { flipSwitch } from '../../../../store/actions/switches';
 
 const Switch = props => {
     const onKeyHandler = (event) => {
+        console.log(event.key)
         if (event.key === 'Enter') {
             props.onToggle(props.id);
+        }
+        else if (event.key === "ArrowDown") {
+            console.log("here")
         }
     }
 
@@ -29,7 +33,7 @@ const Switch = props => {
             <div
                 className={leverClasses.join(' ')}
                 onClick={() => props.onToggle(props.id)}
-                tabIndex="0"
+                tabIndex={props.id === 0 ? "0" : "-1"}
                 onKeyPress={onKeyHandler}
             >
             </div>

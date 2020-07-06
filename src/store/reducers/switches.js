@@ -4,8 +4,47 @@ const initialState = {
     switches: [],
     level: null,
     gameStarted: false,
-    moves: 0
+    moves: 0,
+    focus: {
+        x: 0,
+        y: 0
+    }
 };
+
+const setFocus = (state, {x, y}) => {
+    const columnCount = state.level === 3 ? 4 : 3;
+
+    // left arrow
+    if (y % columnCount === 0) {
+        return {
+            x: x,
+            y: y + (columnCount - 1)
+        }
+    }
+    // right arrow
+    if (y % columnCount === (columnCount - 1)) {
+        return {
+            x: x,
+            y: y - (columnCount - 1)
+        }
+    }
+    // down arrow
+    if (x % columnCount === (columnCount - 1)) {
+        const switchId = state.switches[state.switches.length - 1 - (columnCount - 1)].id
+        return {
+            x: switchId,
+            y: y
+        }
+    }
+    //up arrow
+    // if (x % columnCount === (columnCount - 1)) {
+    //     const switchId = state.switches[state.switches.length - 1 - (columnCount - 1)].id
+    //     return {
+    //         x: switchId,
+    //         y: y
+    //     }
+    // }
+}
 
 const updateSwitches = (state, id) => {
     let idsAffected = state.switches.find(i => i.id === id).ids;
@@ -27,9 +66,9 @@ const updateSwitches = (state, id) => {
 
 const reset = (state, level) => {
     const aLevel = level || state.level;
-    return aLevel === 1 ? level1.map(row => [...row]) :
-        aLevel === 2 ? level2.map(row => [...row]) :
-            level3.map(row => [...row]);
+    return aLevel === 1 ? [...level1] :
+        aLevel === 2 ? [...level2] :
+            [...level3];
 }
 
 const reducer = (state = initialState, action) => {
