@@ -6,12 +6,20 @@ import { flipSwitch } from '../../../../store/actions/switches';
 
 const Switch = props => {
     const onKeyHandler = (event) => {
-        console.log(event.key)
         if (event.key === 'Enter') {
             props.onToggle(props.id, {x: props.x, y: props.y});
         }
         else if (event.key === "ArrowDown") {
-            console.log("here")
+            console.log("ArrowDown")
+        }
+        else if (event.key === "ArrowUp") {
+            console.log("ArrowUp")
+        }
+        else if (event.key === "ArrowLeft") {
+            console.log("ArrowLeft")
+        }
+        else if (event.key === "ArrowRight") {
+            console.log("ArrowRight")
         }
     }
 
@@ -35,7 +43,7 @@ const Switch = props => {
                 className={leverClasses.join(' ')}
                 onClick={() => props.onToggle(props.id, {x: props.x, y: props.y})}
                 tabIndex={props.id === 0 ? "0" : "-1"}
-                onKeyPress={onKeyHandler}
+                onKeyDown={onKeyHandler}
             >
             </div>
         </div>
