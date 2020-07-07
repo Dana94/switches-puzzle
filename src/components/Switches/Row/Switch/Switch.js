@@ -8,7 +8,7 @@ const Switch = props => {
     const onKeyHandler = (event) => {
         console.log(event.key)
         if (event.key === 'Enter') {
-            props.onToggle(props.id);
+            props.onToggle(props.id, {x: props.x, y: props.y});
         }
         else if (event.key === "ArrowDown") {
             console.log("here")
@@ -33,7 +33,7 @@ const Switch = props => {
             </div>
             <div
                 className={leverClasses.join(' ')}
-                onClick={() => props.onToggle(props.id)}
+                onClick={() => props.onToggle(props.id, {x: props.x, y: props.y})}
                 tabIndex={props.id === 0 ? "0" : "-1"}
                 onKeyPress={onKeyHandler}
             >
@@ -51,7 +51,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onToggle: (id) => dispatch(flipSwitch(id))
+        onToggle: (id, coords) => dispatch(flipSwitch(id, coords))
     }
 }
 

@@ -46,29 +46,43 @@ const setFocus = (state, {x, y}) => {
     // }
 }
 
-const updateSwitches = (state, id) => {
-    let idsAffected = state.switches.find(i => i.id === id).ids;
+const updateSwitches = (state, id, coords) => {
+    let idsAffected = state.switches[coords.x][coords.y].ids;
+    console.log('idsAffected', idsAffected);
     let ids = [id, ...idsAffected];
+    // let newSwitches = state.switches.map(item => {
 
-    let newSwitches = state.switches.map(item => {
+    //     if (ids.includes(item.id)) {
+    //         return {
+    //             id: item.id,
+    //             isOn: !state.switches.find(x => x.id === item.id).isOn,
+    //             ids: state.switches.find(x => x.id === item.id).ids
+    //         }
+    //     }
+    //     return item;
+    // });
+    let newSwitches = state.switches.map(row => {
 
-        if (ids.includes(item.id)) {
-            return {
-                id: item.id,
-                isOn: !state.switches.find(x => x.id === item.id).isOn,
-                ids: state.switches.find(x => x.id === item.id).ids
+        return row.map(sw => {
+            if(ids.includes(sw.id)){
+                return {
+                    id: sw.id,
+                    isOn: !state.switches.map(x => x.find(y => y.id === sw.id).isOn),
+                    ids: state.switches.map(x => x.find(y => y.id === sw.id).ids)
+                }
             }
-        }
-        return item;
+            return sw;
+        })
     });
+    console.log(newSwitches);
     return newSwitches;
 }
 
 const reset = (state, level) => {
     const aLevel = level || state.level;
-    return aLevel === 1 ? [...level1] :
-        aLevel === 2 ? [...level2] :
-            [...level3];
+    return aLevel === 1 ? level1.map(row => [...row]) :
+        aLevel === 2 ? level2.map(row => [...row]) :
+            level3.map(row => [...row]);
 }
 
 const reducer = (state = initialState, action) => {
@@ -90,7 +104,7 @@ const reducer = (state = initialState, action) => {
     }
     if (action.type === 'FLIP_SWITCH' && typeof action.id === 'number') {
         return {
-            switches: updateSwitches(state, action.id),
+            switches: updateSwitches(state, action.id, action.coords),
             level: state.level,
             gameStarted: state.gameStarted,
             moves: state.moves + 1

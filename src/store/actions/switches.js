@@ -1,8 +1,9 @@
 
-export const flipSwitch = (id) => {
+export const flipSwitch = (id, coords) => {
     return {
         type: 'FLIP_SWITCH',
-        id: id
+        id: id,
+        coords: coords
     }
 }
 
