@@ -48,33 +48,22 @@ const setFocus = (state, {x, y}) => {
 
 const updateSwitches = (state, id, coords) => {
     let idsAffected = state.switches[coords.x][coords.y].ids;
-    console.log('idsAffected', idsAffected);
     let ids = [id, ...idsAffected];
-    // let newSwitches = state.switches.map(item => {
 
-    //     if (ids.includes(item.id)) {
-    //         return {
-    //             id: item.id,
-    //             isOn: !state.switches.find(x => x.id === item.id).isOn,
-    //             ids: state.switches.find(x => x.id === item.id).ids
-    //         }
-    //     }
-    //     return item;
-    // });
     let newSwitches = state.switches.map(row => {
 
         return row.map(sw => {
             if(ids.includes(sw.id)){
+                let foundSwitch = state.switches.map(x => x.find(y => y.id === sw.id)).filter(z => z !== undefined)
                 return {
                     id: sw.id,
-                    isOn: !state.switches.map(x => x.find(y => y.id === sw.id).isOn),
-                    ids: state.switches.map(x => x.find(y => y.id === sw.id).ids)
+                    isOn: !foundSwitch.isOn,
+                    ids: foundSwitch.ids
                 }
             }
             return sw;
         })
     });
-    console.log(newSwitches);
     return newSwitches;
 }
 
