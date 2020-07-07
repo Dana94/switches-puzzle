@@ -53,8 +53,9 @@ const updateSwitches = (state, id, coords) => {
     let newSwitches = state.switches.map(row => {
 
         return row.map(sw => {
-            if(ids.includes(sw.id)){
-                let foundSwitch = state.switches.map(x => x.find(y => y.id === sw.id)).filter(z => z !== undefined)
+            if (ids.includes(sw.id)) {
+                let foundSwitch = state.switches.map(x => x.find(y => y.id === sw.id)).filter(z => z !== undefined)[0];
+
                 return {
                     id: sw.id,
                     isOn: !foundSwitch.isOn,
