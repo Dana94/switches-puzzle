@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './Switches.css';
-import Switch from './Switch/Switch';
+import Row from './Row/Row';
 import Button from '../Button/Button';
 import { reset, endGame } from '../../store/actions/switches';
 
@@ -18,8 +18,8 @@ const Switches = props => {
             <p>Turn all the switches on so their color is green.</p>
             <div className={containerClasses.join(" ")}>
                 {
-                    props.switches.map(sw => {
-                        return <Switch id={sw.id} key={sw.id} />;
+                    props.switches.map((row, index) => {
+                        return <Row x={index} key={index} row={row} />;
                     })
                 }
             </div>

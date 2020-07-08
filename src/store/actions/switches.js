@@ -1,8 +1,9 @@
 
-export const flipSwitch = (id) => {
+export const flipSwitch = (id, coords) => {
     return {
         type: 'FLIP_SWITCH',
-        id: id
+        id: id,
+        coords: coords
     }
 }
 
@@ -22,5 +23,12 @@ export const setLevel = (level) => {
 export const endGame = () => {
     return {
         type: 'END_GAME'
+    }
+}
+
+export const setFocus = (coords) => {
+    return {
+        type: 'SET_FOCUS',
+        coords: coords
     }
 }
