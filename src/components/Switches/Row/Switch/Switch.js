@@ -23,6 +23,11 @@ const Switch = props => {
         }
     }
 
+    const onClickHandler = () => {
+        props.onToggle(props.id, { x: props.x, y: props.y });
+        props.onSetFocus({ x: props.x, y: props.y });
+    }
+
     const switchRef = useRef();
 
     if (props.focus.x === props.x && props.focus.y === props.y && !!switchRef.current) {
@@ -47,8 +52,8 @@ const Switch = props => {
             </div>
             <div
                 className={leverClasses.join(' ')}
-                onClick={() => props.onToggle(props.id, { x: props.x, y: props.y })}
-                tabIndex={props.id === 0 ? "0" : "-1"}
+                onClick={onClickHandler}
+                tabIndex={props.id === 0 ? "0" : "-1"} // only the first switch can be tabbed to - the rest is reached by arrow keys
                 onKeyDown={onKeyHandler}
                 ref={switchRef}
             >
