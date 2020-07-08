@@ -11,60 +11,26 @@ const initialState = {
     }
 };
 
-const setFocus = (state, { x, y }) => {
-    // const columnCount = state.level === 3 ? 4 : 3;
+const setFocus = (state, coords) => {
 
-    // // left arrow
-    // if (y % columnCount === 0) {
-    //     return {
-    //         x: x,
-    //         y: y + (columnCount - 1)
-    //     }
-    // }
-    // // right arrow
-    // if (y % columnCount === (columnCount - 1)) {
-    //     return {
-    //         x: x,
-    //         y: y - (columnCount - 1)
-    //     }
-    // }
-    // // down arrow
-    // if (x % columnCount === (columnCount - 1)) {
-    //     const switchId = state.switches[state.switches.length - 1 - (columnCount - 1)].id
-    //     return {
-    //         x: switchId,
-    //         y: y
-    //     }
-    // }
-    //up arrow
-    // if (x % columnCount === (columnCount - 1)) {
-    //     const switchId = state.switches[state.switches.length - 1 - (columnCount - 1)].id
-    //     return {
-    //         x: switchId,
-    //         y: y
-    //     }
-    // }
-    if (x >= 0 && y >= 0 && y <= state.board[0].length - 1 && x <= state.board.length - 1) {
-        state.focus.x = x;
-        state.focus.y = y;
+    // up arrow will focus on the bottom most switch in the column
+    if (coords.x < 0) {
+        return { x: state.switches.length - 1, y: coords.y };
     }
-    // up arrow will focus on the bottom most grid in the column
-    if (x < 0) {
-        state.focus.x = state.board.length - 1;
+    // down arrow will focus on the top most switch in the column
+    else if (coords.x > state.switches.length - 1) {
+        return { x: 0, y: coords.y };
     }
-    // down arrow will focus on the top most grid in the column
-    if (x > state.board.length - 1) {
-        state.focus.x = 0;
+    // left arrow will focus on right most switch in the row
+    else if (coords.y < 0) {
+        return { x: coords.x, y: state.switches[0].length - 1 };
     }
-
-    // left arrow will focus on right most square in the row
-    if (y < 0) {
-        state.focus.y = state.board[0].length - 1;
+    // right arrow will focus on left most switch in the row
+    else if (coords.y > state.switches[0].length - 1) {
+        return { x: coords.x, y: 0 };
     }
-
-    // right arrow will focus on left most square in the row
-    if (y > state.board[0].length - 1) {
-        state.focus.y = 0;
+    else {
+        return { x: coords.x, y: coords.y };
     }
 }
 
@@ -103,7 +69,8 @@ const reducer = (state = initialState, action) => {
             switches: action.level ? reset(state, action.level) : reset(state),
             level: action.level || state.level,
             gameStarted: true,
-            moves: 0
+            moves: 0,
+            focus: state.focus
         }
     }
     if (action.type === 'END_GAME') {
@@ -111,7 +78,8 @@ const reducer = (state = initialState, action) => {
             switches: [],
             level: null,
             gameStarted: false,
-            moves: state.moves
+            moves: state.moves,
+            focus: state.focus
         }
     }
     if (action.type === 'FLIP_SWITCH' && typeof action.id === 'number') {
@@ -119,14 +87,25 @@ const reducer = (state = initialState, action) => {
             switches: updateSwitches(state, action.id, action.coords),
             level: state.level,
             gameStarted: state.gameStarted,
-            moves: state.moves + 1
+            moves: state.moves + 1,
+            focus: state.focus
+        }
+    }
+    if (action.type === 'SET_FOCUS') {
+        return {
+            switches: state.switches,
+            level: state.level,
+            gameStarted: state.gameStarted,
+            moves: state.moves,
+            focus: setFocus(state, action.coords)
         }
     }
     return {
         switches: state.switches,
         level: state.level,
         gameStarted: state.gameStarted,
-        moves: state.moves
+        moves: state.moves,
+        focus: state.focus
     }
 }
 

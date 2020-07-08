@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './Switch.module.css';
-import { flipSwitch } from '../../../../store/actions/switches';
+import { flipSwitch, setFocus } from '../../../../store/actions/switches';
 
 const Switch = props => {
     const onKeyHandler = (event) => {
         if (event.key === 'Enter') {
-            props.onToggle(props.id, {x: props.x, y: props.y});
+            props.onToggle(props.id, { x: props.x, y: props.y });
         }
         else if (event.key === "ArrowDown") {
-            console.log("ArrowDown")
+            props.onSetFocus({ x: props.x + 1, y: props.y });
         }
         else if (event.key === "ArrowUp") {
-            console.log("ArrowUp")
+            props.onSetFocus({ x: props.x - 1, y: props.y });
         }
         else if (event.key === "ArrowLeft") {
-            console.log("ArrowLeft")
+            props.onSetFocus({ x: props.x, y: props.y - 1 });
         }
         else if (event.key === "ArrowRight") {
-            console.log("ArrowRight")
+            props.onSetFocus({ x: props.x, y: props.y + 1 });
         }
+    }
+
+    const switchRef = useRef();
+
+    if (props.focus.x === props.x && props.focus.y === props.y && !!switchRef.current) {
+        switchRef.current.focus();
     }
 
     let switchValueClasses = [classes.SwitchValue];
@@ -41,9 +47,10 @@ const Switch = props => {
             </div>
             <div
                 className={leverClasses.join(' ')}
-                onClick={() => props.onToggle(props.id, {x: props.x, y: props.y})}
+                onClick={() => props.onToggle(props.id, { x: props.x, y: props.y })}
                 tabIndex={props.id === 0 ? "0" : "-1"}
                 onKeyDown={onKeyHandler}
+                ref={switchRef}
             >
             </div>
         </div>
@@ -53,13 +60,15 @@ const Switch = props => {
 
 const mapStateToProps = state => {
     return {
-        switches: state.switches
+        switches: state.switches,
+        focus: state.focus
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onToggle: (id, coords) => dispatch(flipSwitch(id, coords))
+        onToggle: (id, coords) => dispatch(flipSwitch(id, coords)),
+        onSetFocus: (coords) => dispatch(setFocus(coords))
     }
 }
 

@@ -25,3 +25,10 @@ export const endGame = () => {
         type: 'END_GAME'
     }
 }
+
+export const setFocus = (coords) => {
+    return {
+        type: 'SET_FOCUS',
+        coords: coords
+    }
+}
