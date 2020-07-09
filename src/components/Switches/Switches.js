@@ -8,15 +8,10 @@ import { reset, endGame } from '../../store/actions/switches';
 
 const Switches = props => {
 
-    let containerClasses = ["Container"];
-
-    if(props.level === 3) {
-        containerClasses.push("Level3");
-    }
     return (
         <div>
             <p>Turn all the switches on so their color is green.</p>
-            <div className={containerClasses.join(" ")}>
+            <div className="Container">
                 {
                     props.switches.map((row, index) => {
                         return <Row x={index} key={index} row={row} />;
