@@ -6,6 +6,15 @@
     margin: 2rem auto;
 }
 
+.Row:last-child {
+    padding-bottom: 2rem;
+    margin-bottom: 0;
+}
+
+.Row:first-child {
+    margin-top: 01rem;
+}
+
 @media (min-width: 768px) {
     .Row {
         width: 40%;
