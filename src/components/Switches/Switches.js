@@ -11,7 +11,6 @@ const Switches = props => {
     const onResetHandler = () => {
         props.onReset();
         props.onSetFocus({ x: null, y: null });
-
     }
 
     return (
@@ -48,7 +47,6 @@ const mapDispatchToProps = dispatch => {
         onReset: () => dispatch(reset()),
         onEndGame: () => dispatch(endGame()),
         onSetFocus: (coords) => dispatch(setFocus(coords))
-
     }
 }
 
