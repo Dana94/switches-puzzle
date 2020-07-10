@@ -1,4 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Switches Puzzle
 
@@ -12,3 +11,7 @@ The game can be solely accessed through the keyboard alone.
 1. `cd switches-puzzle`
 1. `yarn`
 1. `yarn start` to start a local dev server at `http://localhost:3000`
+
+## Notes
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
