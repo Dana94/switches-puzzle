@@ -1,4 +1,5 @@
 import { level1, level2, level3 } from '../levels';
+import updateState from '../utility';
 
 const initialState = {
     switches: [],
@@ -42,12 +43,11 @@ const updateSwitches = (state, id, coords) => {
 
         return row.map(sw => {
             if (ids.includes(sw.id)) {
-                let foundSwitch = state.switches.map(x => x.find(y => y.id === sw.id)).filter(z => z !== undefined)[0];
 
                 return {
                     id: sw.id,
-                    isOn: !foundSwitch.isOn,
-                    ids: foundSwitch.ids
+                    isOn: !sw.isOn,
+                    ids: sw.ids
                 }
             }
             return sw;
@@ -65,48 +65,32 @@ const reset = (state, level) => {
 
 const reducer = (state = initialState, action) => {
     if (action.type === 'RESET' || action.type === 'SET_LEVEL') {
-        return {
+        return updateState(state, {
             switches: action.level ? reset(state, action.level) : reset(state),
             level: action.level || state.level,
             gameStarted: true,
             moves: 0,
-            focus: state.focus
-        }
+        });
     }
     if (action.type === 'END_GAME') {
-        return {
+        return updateState(state, {
             switches: [],
             level: null,
             gameStarted: false,
-            moves: state.moves,
-            focus: state.focus
-        }
+        });
     }
     if (action.type === 'FLIP_SWITCH' && typeof action.id === 'number') {
-        return {
+        return updateState(state, {
             switches: updateSwitches(state, action.id, action.coords),
-            level: state.level,
-            gameStarted: state.gameStarted,
             moves: state.moves + 1,
-            focus: state.focus
-        }
+        });
     }
     if (action.type === 'SET_FOCUS') {
-        return {
-            switches: state.switches,
-            level: state.level,
-            gameStarted: state.gameStarted,
-            moves: state.moves,
+        return updateState(state, {
             focus: setFocus(state, action.coords)
-        }
+        });
     }
-    return {
-        switches: state.switches,
-        level: state.level,
-        gameStarted: state.gameStarted,
-        moves: state.moves,
-        focus: state.focus
-    }
+    return state;
 }
 
 export default reducer;

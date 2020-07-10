@@ -1,23 +1,8 @@
-/* .Container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-row-gap: 1rem;
-    width: 90%;
-    margin: 2rem auto;
+p.Moves {
+    margin-bottom: 0;
 }
 
-@media (min-width: 768px) {
-    .Container {
-        width: 40%;
-    }
-
-    .Container.Level3 {
-        grid-template-columns: auto auto auto auto;
-    }
-} */
-
-p {
+p.Instructions {
+    padding-top: 2rem;
     margin-top: 0;
-    padding-top: 1rem;
-    margin-bottom: 1rem;
 }

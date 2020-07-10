@@ -3,3 +3,9 @@
   background-color: aliceblue;
   min-height: 100vh;
 }
+
+p {
+  margin-top: 0;
+  padding-top: 1rem;
+}
+

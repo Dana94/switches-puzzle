@@ -1,9 +1,9 @@
 export const level1 = [
     [
-        { id: 0, isOn: false, ids: [2] },
-        { id: 1, isOn: false, ids: [2, 3] },
-        { id: 2, isOn: false, ids: [] },
-        { id: 3, isOn: false, ids: [1, 2] }
+        { id: 0, isOn: false, ids: [2,3] },
+        { id: 1, isOn: false, ids: [3] },
+        { id: 2, isOn: false, ids: [0] },
+        { id: 3, isOn: false, ids: [0] }
     ]
 ];
 
